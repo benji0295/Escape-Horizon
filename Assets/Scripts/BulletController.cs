@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-  private const float BULLET_SPEED = 2.0f;
+  private const float BULLET_SPEED = 200.0f;
   private const float BULLET_LIFETIME = 0.5f;
   private Rigidbody rb;
 
@@ -12,7 +12,7 @@ public class BulletController : MonoBehaviour
   void Start()
   {
     rb = GetComponent<Rigidbody>();
-    rb.AddForce(transform.forward * BULLET_SPEED, ForceMode.Impulse);
+    rb.velocity = transform.forward * BULLET_SPEED;
 
     Destroy(gameObject, BULLET_LIFETIME);
   }

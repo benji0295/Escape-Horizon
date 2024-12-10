@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
   public GameObject spawnPrompt;
   public GameObject enterShipPrompt;
 
+  public Transform gunBarrel;
+
   private bool hasKey = false;
   private bool isPlayerNear = false;
 
@@ -26,7 +28,7 @@ public class PlayerController : MonoBehaviour
     }
   }
 
-  // Update is called once per frame
+
   void Update()
   {
     if (Input.GetKeyDown(KeyCode.R))
@@ -41,8 +43,13 @@ public class PlayerController : MonoBehaviour
 
   private void Fire()
   {
-    var bulletPosition = transform.position + transform.forward * 2.0f;
-    var bulletRotation = transform.rotation;
+    if (gunBarrel == null)
+    {
+      return;
+    }
+
+    var bulletPosition = gunBarrel.position;
+    var bulletRotation = gunBarrel.rotation;
 
     Instantiate(bullet, bulletPosition, bulletRotation);
 

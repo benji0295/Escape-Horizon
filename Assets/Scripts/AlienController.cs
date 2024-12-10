@@ -9,6 +9,7 @@ public class AlienController : MonoBehaviour
   private float moveSpeed = 1.0f;
   private float rotationSpeed = 1.0f;
   private float attackDistance = 10.0f;
+  private float chaseDistance = 20.0f;
   private float nextAttackTime = 0.0f;
   private Animator animator;
   private Rigidbody rigidbody;
@@ -34,15 +35,24 @@ public class AlienController : MonoBehaviour
 
     if (distanceToPlayer <= attackDistance)
     {
+      FacePlayer();
+
       if (Time.time >= nextAttackTime)
       {
         animator.SetBool("isAttacking", true);
-        nextAttackTime = Time.time + 1.0f;
+        nextAttackTime = Time.time + 2.0f;
       }
+    }
+    else if (distanceToPlayer <= chaseDistance)
+    {
+      navMeshAgent.SetDestination(player.transform.position);
+      animator.SetBool("isAttacking", false);
+      animator.SetBool("isWalking", true);
     }
     else
     {
       animator.SetBool("isAttacking", false);
+      animator.SetBool("isWalking", false);
     }
   }
 
