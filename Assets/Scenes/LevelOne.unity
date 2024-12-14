@@ -46548,8 +46548,8 @@ MonoBehaviour:
     Watch
     out for the aliens. Press "Space" to fire at them.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 14dc2594e5a8143a396c9f7db58e315c, type: 2}
+  m_sharedMaterial: {fileID: -3389857712730802189, guid: 14dc2594e5a8143a396c9f7db58e315c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -69233,6 +69233,18 @@ PrefabInstance:
       propertyPath: spawnPrompt
       value: 
       objectReference: {fileID: 1488553881}
+    - target: {fileID: 2679107923885582065, guid: 5381ae5dd75eb435e9a1a4bd3c193018, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 14dc2594e5a8143a396c9f7db58e315c, type: 2}
+    - target: {fileID: 2679107923885582065, guid: 5381ae5dd75eb435e9a1a4bd3c193018, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -3389857712730802189, guid: 14dc2594e5a8143a396c9f7db58e315c, type: 2}
+    - target: {fileID: 2679107923885582065, guid: 5381ae5dd75eb435e9a1a4bd3c193018, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6460452903986523103, guid: 5381ae5dd75eb435e9a1a4bd3c193018, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.6094584
