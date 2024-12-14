@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class EnemyBulletController : MonoBehaviour
 {
   private const float BULLET_SPEED = 200.0f;
-  private const float BULLET_LIFETIME = 0.1f;
+  private const float BULLET_LIFETIME = 0.5f;
   private Rigidbody rb;
 
   // Start is called before the first frame update
@@ -16,4 +16,5 @@ public class BulletController : MonoBehaviour
 
     Destroy(gameObject, BULLET_LIFETIME);
   }
+
 }

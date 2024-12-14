@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
   void Update()
   {
-    if (Input.GetKeyDown(KeyCode.R))
+    if (Input.GetKeyDown(KeyCode.Space))
     {
       Fire();
     }

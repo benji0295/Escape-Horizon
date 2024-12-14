@@ -6,6 +6,9 @@ using UnityEngine.AI;
 
 public class AlienController : MonoBehaviour
 {
+  public GameObject bullet;
+  public Transform bulletSpawn;
+
   private float moveSpeed = 1.0f;
   private float rotationSpeed = 1.0f;
   private float attackDistance = 10.0f;
@@ -17,6 +20,7 @@ public class AlienController : MonoBehaviour
   private UnityEngine.AI.NavMeshAgent navMeshAgent;
   private bool isDead = false;
   private GameObject player;
+
 
   private void Start()
   {
@@ -40,6 +44,8 @@ public class AlienController : MonoBehaviour
       if (Time.time >= nextAttackTime)
       {
         animator.SetBool("isAttacking", true);
+        animator.SetBool("isWalking", false);
+        Fire();
         nextAttackTime = Time.time + 2.0f;
       }
     }
@@ -75,6 +81,28 @@ public class AlienController : MonoBehaviour
       isDead = true;
       animator.SetTrigger("isDead");
       Destroy(gameObject, 2.0f);
+    }
+  }
+
+  private void Fire()
+  {
+    if (animator.GetBool("isAttacking"))
+    {
+      // Spawn bullet at the gun's current position
+      var bulletPosition = bulletSpawn.position;
+
+      // Lock the bullet direction at the moment of firing
+      Vector3 fixedDirection = bulletSpawn.forward.normalized;
+
+      // Create the bullet instance
+      var firedBullet = Instantiate(bullet, bulletPosition, Quaternion.LookRotation(fixedDirection));
+
+      // Apply velocity to the bullet to ensure it flies straight
+      var bulletRigidbody = firedBullet.GetComponent<Rigidbody>();
+      if (bulletRigidbody != null)
+      {
+        bulletRigidbody.velocity = fixedDirection * 200f; // Adjust speed as needed
+      }
     }
   }
 }
