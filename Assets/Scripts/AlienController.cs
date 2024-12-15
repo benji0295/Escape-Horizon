@@ -9,13 +9,12 @@ public class AlienController : MonoBehaviour
   public GameObject bullet;
   public Transform bulletSpawn;
 
-  private float moveSpeed = 1.0f;
-  private float rotationSpeed = 1.0f;
+  private float moveSpeed = 2.0f;
+  private float rotationSpeed = 3.0f;
   private float attackDistance = 10.0f;
   private float chaseDistance = 20.0f;
   private float nextAttackTime = 0.0f;
   private Animator animator;
-  private Rigidbody rigidbody;
 
   private UnityEngine.AI.NavMeshAgent navMeshAgent;
   private bool isDead = false;
@@ -25,12 +24,11 @@ public class AlienController : MonoBehaviour
   private void Start()
   {
     animator = GetComponent<Animator>();
-    rigidbody = GetComponent<Rigidbody>();
     navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     player = GameObject.FindGameObjectWithTag("Player");
+    navMeshAgent.speed = moveSpeed;
   }
 
-  // Update is called once per frame
   void Update()
   {
     if (isDead) return;
@@ -39,6 +37,7 @@ public class AlienController : MonoBehaviour
 
     if (distanceToPlayer <= attackDistance)
     {
+      navMeshAgent.isStopped = true;
       FacePlayer();
 
       if (Time.time >= nextAttackTime)
@@ -46,17 +45,30 @@ public class AlienController : MonoBehaviour
         animator.SetBool("isAttacking", true);
         animator.SetBool("isWalking", false);
         Fire();
-        nextAttackTime = Time.time + 2.0f;
+        nextAttackTime = Time.time + 1.0f;
       }
     }
     else if (distanceToPlayer <= chaseDistance)
     {
+      navMeshAgent.isStopped = false;
       navMeshAgent.SetDestination(player.transform.position);
+
       animator.SetBool("isAttacking", false);
-      animator.SetBool("isWalking", true);
+
+      if (navMeshAgent.velocity.magnitude > 0.1f && navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
+      {
+        animator.SetBool("isWalking", true);
+        float speed = navMeshAgent.velocity.magnitude / navMeshAgent.speed;
+        animator.SetFloat("Speed", Mathf.Clamp(speed, 0, 1));
+      }
+      else
+      {
+        animator.SetBool("isWalking", false);
+      }
     }
     else
     {
+      navMeshAgent.isStopped = true;
       animator.SetBool("isAttacking", false);
       animator.SetBool("isWalking", false);
     }
@@ -88,20 +100,16 @@ public class AlienController : MonoBehaviour
   {
     if (animator.GetBool("isAttacking"))
     {
-      // Spawn bullet at the gun's current position
       var bulletPosition = bulletSpawn.position;
 
-      // Lock the bullet direction at the moment of firing
-      Vector3 fixedDirection = bulletSpawn.forward.normalized;
+      Vector3 firingDirection = transform.forward.normalized;
 
-      // Create the bullet instance
-      var firedBullet = Instantiate(bullet, bulletPosition, Quaternion.LookRotation(fixedDirection));
+      var firedBullet = Instantiate(bullet, bulletPosition, Quaternion.LookRotation(firingDirection));
 
-      // Apply velocity to the bullet to ensure it flies straight
       var bulletRigidbody = firedBullet.GetComponent<Rigidbody>();
       if (bulletRigidbody != null)
       {
-        bulletRigidbody.velocity = fixedDirection * 200f; // Adjust speed as needed
+        bulletRigidbody.velocity = firingDirection * 200f;
       }
     }
   }
