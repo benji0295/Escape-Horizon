@@ -9,6 +9,7 @@ public class ShipController : MonoBehaviour
   private int thrustSensor = 0;
   private Vector3 torqueSensor;
   private bool isPlayerNear = false;
+  private AudioSource audioSource;
 
   public float thrustSpeed = 10.0f;
   public float torqueSpeed = 0.1f;
@@ -16,11 +17,14 @@ public class ShipController : MonoBehaviour
   public TMP_Text livesText;
   public GameObject missile;
   public GameObject spawnPrompt;
+  public AudioClip teleportSound;
+  public AudioClip crashSound;
 
   void Start()
   {
     rigidbody = GetComponent<Rigidbody>();
     livesText.text = "Lives: " + GameManager.lives;
+    audioSource = GetComponent<AudioSource>();
   }
 
   // Update is called once per frame
@@ -82,12 +86,14 @@ public class ShipController : MonoBehaviour
     }
     if (other.CompareTag("Portal"))
     {
+      audioSource.PlayOneShot(teleportSound);
       UnityEngine.SceneManagement.SceneManager.LoadScene("WinScreen");
     }
     if (other.CompareTag("Meteor"))
     {
       GameManager.lives--;
       livesText.text = "Lives: " + GameManager.lives;
+      audioSource.PlayOneShot(crashSound);
 
       if (GameManager.lives <= 0)
       {

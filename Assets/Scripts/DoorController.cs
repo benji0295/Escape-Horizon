@@ -7,56 +7,60 @@ public class DoorController : MonoBehaviour
 
   public GameObject door;
   public GameObject prompt;
-  
-  private bool isPlayerNear = false;
+  public AudioClip doorOpenSound;
 
-    // Start is called before the first frame update
-    void Start()
+  private bool isPlayerNear = false;
+  private AudioSource audioSource;
+
+  // Start is called before the first frame update
+  void Start()
+  {
+    if (prompt != null)
     {
+      prompt.SetActive(false);
+    }
+    audioSource = GetComponent<AudioSource>();
+  }
+
+  // Update is called once per frame
+  void Update()
+  {
+    if (isPlayerNear && Input.GetKeyDown(KeyCode.U))
+    {
+      if (door != null)
+      {
+        Destroy(door);
+        audioSource.PlayOneShot(doorOpenSound);
+
         if (prompt != null)
         {
-            prompt.SetActive(false);
+          prompt.SetActive(false);
         }
+      }
     }
+  }
 
-    // Update is called once per frame
-    void Update()
+  private void OnTriggerEnter(Collider other)
+  {
+    if (other.CompareTag("Player"))
     {
-        if (isPlayerNear && Input.GetKeyDown(KeyCode.U))
-        {
-            if (door != null)
-            {
-                Destroy(door);
-
-                if (prompt != null)
-                {
-                    prompt.SetActive(false);
-                }
-            }
-        }
+      isPlayerNear = true;
+      if (prompt != null)
+      {
+        prompt.SetActive(true);
+      }
     }
+  }
 
-    private void OnTriggerEnter(Collider other)
+  private void OnTriggerExit(Collider other)
+  {
+    if (other.CompareTag("Player"))
     {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerNear = true;
-            if (prompt != null)
-            {
-                prompt.SetActive(true);
-            }
-        }
+      isPlayerNear = false;
+      if (prompt != null)
+      {
+        prompt.SetActive(false);
+      }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerNear = false;
-            if (prompt != null)
-            {
-                prompt.SetActive(false);
-            }
-        }
-    }
+  }
 }

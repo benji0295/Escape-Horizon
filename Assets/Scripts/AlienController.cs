@@ -8,6 +8,8 @@ public class AlienController : MonoBehaviour
 {
   public GameObject bullet;
   public Transform bulletSpawn;
+  public AudioClip laserSound;
+  public AudioClip deathSound;
 
   private float moveSpeed = 2.0f;
   private float rotationSpeed = 3.0f;
@@ -15,6 +17,7 @@ public class AlienController : MonoBehaviour
   private float chaseDistance = 30.0f;
   private float nextAttackTime = 0.0f;
   private Animator animator;
+  private AudioSource audioSource;
 
   private UnityEngine.AI.NavMeshAgent navMeshAgent;
   private bool isDead = false;
@@ -27,6 +30,7 @@ public class AlienController : MonoBehaviour
     navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     player = GameObject.FindGameObjectWithTag("Player");
     navMeshAgent.speed = moveSpeed;
+    audioSource = GetComponent<AudioSource>();
   }
 
   void Update()
@@ -45,6 +49,7 @@ public class AlienController : MonoBehaviour
         animator.SetBool("isAttacking", true);
         animator.SetBool("isWalking", false);
         Fire();
+        audioSource.PlayOneShot(laserSound);
         nextAttackTime = Time.time + 1.0f;
       }
     }
@@ -92,6 +97,7 @@ public class AlienController : MonoBehaviour
     {
       isDead = true;
       animator.SetTrigger("isDead");
+      audioSource.PlayOneShot(deathSound);
       Destroy(gameObject, 2.0f);
     }
   }

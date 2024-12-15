@@ -11,11 +11,16 @@ public class PlayerController : MonoBehaviour
   public GameObject bullet;
   public GameObject spawnPrompt;
   public GameObject enterShipPrompt;
+  public AudioClip laserSound;
+  public AudioClip keySound;
+  public AudioClip enterShipSound;
 
   public Transform gunBarrel;
 
   private bool hasKey = false;
   private bool isPlayerNear = false;
+  private AudioSource audioSource;
+
 
   // Start is called before the first frame update
   void Start()
@@ -30,6 +35,8 @@ public class PlayerController : MonoBehaviour
     }
 
     livesText.text = "Lives: " + GameManager.lives;
+
+    audioSource = GetComponent<AudioSource>();
   }
 
 
@@ -38,9 +45,18 @@ public class PlayerController : MonoBehaviour
     if (Input.GetKeyDown(KeyCode.Space))
     {
       Fire();
+      if (laserSound != null)
+      {
+        audioSource.PlayOneShot(laserSound);
+      }
+      else
+      {
+        Debug.Log("Laser sound not assigned.");
+      }
     }
     if (isPlayerNear && hasKey && Input.GetKeyDown(KeyCode.E))
     {
+      audioSource.PlayOneShot(enterShipSound);
       UnityEngine.SceneManagement.SceneManager.LoadScene("LevelThree");
     }
   }
@@ -64,6 +80,7 @@ public class PlayerController : MonoBehaviour
     {
       Destroy(other.gameObject);
       hasKey = true;
+      audioSource.PlayOneShot(keySound);
       Debug.Log("Player has key");
     }
     if (other.CompareTag("EnterShip"))
