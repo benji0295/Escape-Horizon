@@ -11,8 +11,8 @@ public class AlienController : MonoBehaviour
 
   private float moveSpeed = 2.0f;
   private float rotationSpeed = 3.0f;
-  private float attackDistance = 10.0f;
-  private float chaseDistance = 20.0f;
+  private float attackDistance = 20.0f;
+  private float chaseDistance = 30.0f;
   private float nextAttackTime = 0.0f;
   private Animator animator;
 

@@ -90,6 +90,15 @@ public class PlayerController : MonoBehaviour
 
       }
     }
+    if (other.CompareTag("EnemyBullet"))
+    {
+      GameManager.lives--;
+      Debug.Log("Player has been hit by enemy bullet. Lives remaining: " + GameManager.lives);
+    }
+    if (other.CompareTag("LevelPortal"))
+    {
+      UnityEngine.SceneManagement.SceneManager.LoadScene("LevelTwo");
+    }
   }
   private void OnTriggerExit(Collider other)
   {

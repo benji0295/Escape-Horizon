@@ -364,14 +364,6 @@ public class FirstPersonController : MonoBehaviour
     }
   }
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (other.CompareTag("LevelPortal"))
-    {
-      UnityEngine.SceneManagement.SceneManager.LoadScene("Coming Soon");
-    }
-  }
-
   void FixedUpdate()
   {
     #region Movement
