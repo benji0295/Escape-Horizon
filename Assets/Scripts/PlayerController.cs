@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+  public TMP_Text livesText;
   public GameObject bullet;
   public GameObject spawnPrompt;
   public GameObject enterShipPrompt;
@@ -26,6 +28,8 @@ public class PlayerController : MonoBehaviour
     {
       enterShipPrompt.SetActive(false);
     }
+
+    livesText.text = "Lives: " + GameManager.lives;
   }
 
 
@@ -93,7 +97,12 @@ public class PlayerController : MonoBehaviour
     if (other.CompareTag("EnemyBullet"))
     {
       GameManager.lives--;
-      Debug.Log("Player has been hit by enemy bullet. Lives remaining: " + GameManager.lives);
+      livesText.text = "Lives: " + GameManager.lives;
+      if (GameManager.lives <= 0)
+      {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("LoseScreen");
+        GameManager.lives = 5;
+      }
     }
     if (other.CompareTag("LevelPortal"))
     {
