@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShipController : MonoBehaviour
 {
@@ -11,12 +12,15 @@ public class ShipController : MonoBehaviour
 
   public float thrustSpeed = 10.0f;
   public float torqueSpeed = 0.1f;
+
+  public TMP_Text livesText;
   public GameObject missile;
   public GameObject spawnPrompt;
 
   void Start()
   {
     rigidbody = GetComponent<Rigidbody>();
+    livesText.text = "Lives: " + GameManager.lives;
   }
 
   // Update is called once per frame
@@ -79,6 +83,16 @@ public class ShipController : MonoBehaviour
     if (other.CompareTag("Portal"))
     {
       UnityEngine.SceneManagement.SceneManager.LoadScene("WinScreen");
+    }
+    if (other.CompareTag("Meteor"))
+    {
+      GameManager.lives--;
+      livesText.text = "Lives: " + GameManager.lives;
+
+      if (GameManager.lives <= 0)
+      {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("LoseScreen");
+      }
     }
   }
   private void OnTriggerExit(Collider other)

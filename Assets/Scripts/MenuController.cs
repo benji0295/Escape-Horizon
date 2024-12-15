@@ -15,7 +15,7 @@ public class MenuController : MonoBehaviour
       }
     }
 
-    if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "WinScreen")
+    if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "WinScreen" || UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "LoseScreen")
     {
       if (Input.GetKeyDown(KeyCode.Return))
       {
