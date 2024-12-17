@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
   public GameObject bullet;
   public GameObject spawnPrompt;
   public GameObject enterShipPrompt;
+  public GameObject needKeyPrompt;
   public AudioClip laserSound;
   public AudioClip keySound;
   public AudioClip enterShipSound;
@@ -28,10 +29,12 @@ public class PlayerController : MonoBehaviour
     if (spawnPrompt != null)
     {
       spawnPrompt.SetActive(false);
+      needKeyPrompt.SetActive(false);
     }
     if (enterShipPrompt != null)
     {
       enterShipPrompt.SetActive(false);
+      needKeyPrompt.SetActive(false);
     }
 
     livesText.text = "Lives: " + GameManager.lives;
@@ -42,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
   void Update()
   {
-    if (Input.GetKeyDown(KeyCode.Space))
+    if (Input.GetMouseButtonDown(0))
     {
       Fire();
       if (laserSound != null)
@@ -81,7 +84,6 @@ public class PlayerController : MonoBehaviour
       Destroy(other.gameObject);
       hasKey = true;
       audioSource.PlayOneShot(keySound);
-      Debug.Log("Player has key");
     }
     if (other.CompareTag("EnterShip"))
     {
@@ -91,7 +93,7 @@ public class PlayerController : MonoBehaviour
       }
       else
       {
-        Debug.Log("Player does not have key");
+        needKeyPrompt.SetActive(true);
       }
     }
     if (other.CompareTag("Respawn"))
@@ -142,6 +144,7 @@ public class PlayerController : MonoBehaviour
       if (enterShipPrompt != null)
       {
         enterShipPrompt.SetActive(false);
+        needKeyPrompt.SetActive(false);
       }
     }
   }

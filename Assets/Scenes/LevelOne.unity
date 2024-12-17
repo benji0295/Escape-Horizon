@@ -4266,7 +4266,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2033559410759689080, guid: 8e960832351044e37ac488ae0a2c6917, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -60.9
+      value: -72.52
       objectReference: {fileID: 0}
     - target: {fileID: 2033559410759689080, guid: 8e960832351044e37ac488ae0a2c6917, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4274,7 +4274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2033559410759689080, guid: 8e960832351044e37ac488ae0a2c6917, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -80.9
+      value: -81.79
       objectReference: {fileID: 0}
     - target: {fileID: 2033559410759689080, guid: 8e960832351044e37ac488ae0a2c6917, type: 3}
       propertyPath: m_LocalRotation.w
@@ -47493,10 +47493,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'Find the control panels to unlock the doors to escape the space station.
+    You will be prompted to press "U" to unlock the door when you find the correct
+    control panel.
 
 
-    Watch
-    out for the aliens. Press "Space" to fire at them.'
+    Move with the WASD keys and left click to shoot the intruding
+    aliens.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 14dc2594e5a8143a396c9f7db58e315c, type: 2}
   m_sharedMaterial: {fileID: -3389857712730802189, guid: 14dc2594e5a8143a396c9f7db58e315c, type: 2}
@@ -63816,7 +63818,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2033559410759689080, guid: 8e960832351044e37ac488ae0a2c6917, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -41.8
+      value: -49.26
       objectReference: {fileID: 0}
     - target: {fileID: 2033559410759689080, guid: 8e960832351044e37ac488ae0a2c6917, type: 3}
       propertyPath: m_LocalPosition.y
@@ -63824,7 +63826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2033559410759689080, guid: 8e960832351044e37ac488ae0a2c6917, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -103.6
+      value: -106.18
       objectReference: {fileID: 0}
     - target: {fileID: 2033559410759689080, guid: 8e960832351044e37ac488ae0a2c6917, type: 3}
       propertyPath: m_LocalRotation.w
