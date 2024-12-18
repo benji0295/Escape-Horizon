@@ -98,6 +98,7 @@ public class ShipController : MonoBehaviour
       if (GameManager.lives <= 0)
       {
         UnityEngine.SceneManagement.SceneManager.LoadScene("LoseScreen");
+        GameManager.lives = 5;
       }
     }
   }
