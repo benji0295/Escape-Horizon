@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
   private bool hasKey = false;
   private bool isPlayerNear = false;
-  private AudioSource audioSource;
+  public AudioSource audioSource;
 
 
   // Start is called before the first frame update
@@ -48,13 +48,17 @@ public class PlayerController : MonoBehaviour
     if (Input.GetMouseButtonDown(0))
     {
       Fire();
-      if (laserSound != null)
+      if (audioSource == null)
       {
-        audioSource.PlayOneShot(laserSound);
+        Debug.LogError("AudioSource is not assigned!");
+      }
+      else if (laserSound == null)
+      {
+        Debug.LogError("Laser sound is not assigned!");
       }
       else
       {
-        Debug.Log("Laser sound not assigned.");
+        audioSource.PlayOneShot(laserSound);
       }
     }
     if (isPlayerNear && hasKey && Input.GetKeyDown(KeyCode.E))

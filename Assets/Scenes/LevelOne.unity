@@ -70933,7 +70933,12 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!82 &4459864850301270759
+--- !u!82 &4459864850301270751 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -8944051235385862222, guid: 5381ae5dd75eb435e9a1a4bd3c193018, type: 3}
+  m_PrefabInstance: {fileID: 7776033836427664856}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &4459864850301270760
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71042,6 +71047,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1716273232477445830, guid: 5381ae5dd75eb435e9a1a4bd3c193018, type: 3}
+      propertyPath: keySound
+      value: 
+      objectReference: {fileID: 8300000, guid: cf14c325d4424498fbda379ff493ed4c, type: 3}
+    - target: {fileID: 1716273232477445830, guid: 5381ae5dd75eb435e9a1a4bd3c193018, type: 3}
       propertyPath: livesText
       value: 
       objectReference: {fileID: 333885722}
@@ -71050,9 +71059,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: d380a52c903844b60ab14f5b48ee6f9e, type: 3}
     - target: {fileID: 1716273232477445830, guid: 5381ae5dd75eb435e9a1a4bd3c193018, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 4459864850301270751}
+    - target: {fileID: 1716273232477445830, guid: 5381ae5dd75eb435e9a1a4bd3c193018, type: 3}
       propertyPath: spawnPrompt
       value: 
       objectReference: {fileID: 1488553881}
+    - target: {fileID: 1716273232477445830, guid: 5381ae5dd75eb435e9a1a4bd3c193018, type: 3}
+      propertyPath: enterShipSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6cced9c703dc44a09b9172699cb7bbce, type: 3}
     - target: {fileID: 1809167428283235164, guid: 5381ae5dd75eb435e9a1a4bd3c193018, type: 3}
       propertyPath: mouseSensitivity
       value: 1
@@ -71129,7 +71146,7 @@ PrefabInstance:
       addedObject: {fileID: 4459864850301270750}
     - targetCorrespondingSourceObject: {fileID: 1058640550994207995, guid: 5381ae5dd75eb435e9a1a4bd3c193018, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4459864850301270759}
+      addedObject: {fileID: 4459864850301270760}
   m_SourcePrefab: {fileID: 100100000, guid: 5381ae5dd75eb435e9a1a4bd3c193018, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
